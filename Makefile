@@ -38,6 +38,9 @@ uninstall:
 	-rm -rf $(DESTDIR)/usr/share/themes/Pop-slim
 	-rm -rf $(DESTDIR)/usr/share/themes/Pop-dark-slim
 	-rm -rf $(DESTDIR)/usr/share/themes/Pop-light-slim
+	-rm -rf $(DESTDIR)/usr/share/themes/Pop-High-Contrast
+	-rm -rf $(DESTDIR)/usr/share/themes/Pop-high-contrast
+	-rm -rf $(DESTDIR)/usr/share/themes/Pop-high-contrast-slim
 
 install:
 	@echo "** Installing the theme..."
@@ -51,6 +54,10 @@ install:
 	    cp -ur src/index$$color$$size.theme $$themedir/index.theme; \
 	  done; \
 	done
+
+	install -d $(DESTDIR)$(BASE_DIR)/Pop-high-contrast #high-contrast
+	cp -ur COPYING $(DESTDIR)$(BASE_DIR)/Pop-high-contrast
+	cp -ur src/index-high-contrast.theme $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/index.theme
 
 	# Install GNOME Shell Theme
 	for color in $(COLOR_VARIANTS); do \
@@ -113,6 +120,16 @@ install:
 	  done; \
 	done
 
+	install -d $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-2.0
+	cd $(SRCDIR)/gtk-2.0 && cp -ur \
+	  apps.rc \
+	  hacks.rc \
+	  main.rc \
+	  $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-2.0
+	cd $(SRCDIR)/gtk-2.0 && cp -ur \
+	  assets \
+	  $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-2.0
+
 	# Install GTK3 Theme \
 	for color in $(COLOR_VARIANTS); do \
 	  for size in $(SIZE_VARIANTS); do \
@@ -138,6 +155,17 @@ install:
 	      fi; \
 	    done; \
 	  done; \
+	done
+
+	# Install High-Contrast Theme
+	install -d $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-common
+	cd $(SRCDIR)/gtk-3.0/gtk-common && cp -ur assets $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-common
+	cd $(SRCDIR)/gtk-3.0/gtk-common && for version in '3.20' '3.22'; do \
+	  install -d $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-$$version; \
+	  cd $(SRCDIR)/gtk-3.0/high-contrast; \
+	  cp -ur assets $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-$$version; \
+	  cp -ur gtk.css $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-$$version/gtk.css; \
+	  cp -ur gtk.css $(DESTDIR)$(BASE_DIR)/Pop-high-contrast/gtk-$$version/gtk-dark.css; \
 	done
 
 	# Install Plank Theme
@@ -234,6 +262,8 @@ gtk3:
 	    done; \
 	  done; \
 	done
+	sassc $(SASSC_OPT) src/gtk-3.0/high-contrast/gtk.{scss,css}
+
 
 gnome-shell:
 	@echo "** Generating GNOME Shell..."
