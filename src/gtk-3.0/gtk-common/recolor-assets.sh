@@ -21,27 +21,22 @@
 
 
 # List of Current Color definitions:
-accent1="faa41a"
+accent1="196ffa"
 selection1="48b9c7"
 black="484442"
 bg1="49423e"
 bg2="574f4a"
-bg3="4a5c64"
+bg3="49423e"
 bg4="49423e"
 
 # List of stock colors to use:
-accentO="FF4081"
-selectionO="42A5F5"
-blackO="000000"
-bg1O="333e43"
-bg2O="414f56"
-bg3O="3b484e"
-bg4O="404e55"
-bg5O="374349"
-bg6O="E0E0E0"
-menuBgO="455A64"
-radiusXO='rx="2"'
-radiusYO='ry="2"'
+accentO="faa41a"
+selectionO="48b9c7"
+blackO="484442"
+bg1O="49423e"
+bg2O="574f4a"
+bg3O="49423e"
+bg4O="49423e"
 
 # Color replacements happen here:
 

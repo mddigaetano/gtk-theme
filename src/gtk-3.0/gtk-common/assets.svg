@@ -114,7 +114,7 @@
     <linearGradient
        id="color-accent">
       <stop
-         stop-color="#faa41a"
+         stop-color="#196ffa"
          id="stop34" />
     </linearGradient>
     <linearGradient
@@ -126,7 +126,7 @@
     <linearGradient
        id="color-accent-disabled">
       <stop
-         stop-color="#faa41a"
+         stop-color="#196ffa"
          stop-opacity="0.5"
          id="stop40" />
     </linearGradient>
